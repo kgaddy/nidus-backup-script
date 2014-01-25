@@ -7,7 +7,6 @@
 
 # Where to backup to.
 dest="/Volumes/Public/Backups"
-#dest="/192.168.1.26"
 
 # Create archive filename.
 day=$(date +%A)
@@ -25,7 +24,8 @@ tar czf $dest/$archive_file ~/Documents /Applications/MAMP/htdocs
 # Long listing of files in $dest to check file sizes.
 ls -lh $dest
 
-curl -v -L -G -d "code=Backup&descr=$archive_file&value=From%20Backup%20Script" http://192.168.1.2:8001
+#log to nidus-log service
+curl -X POST -d "code=Backup&descr=$archive_file&value=From%20Backup%20Script" http://192.168.1.124:8001
 
 # Print end status message.
 echo
